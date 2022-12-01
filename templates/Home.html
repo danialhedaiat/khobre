@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    khobre Home
+{% endblock %}
+{% block body %}
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
+                <p class="h2 me-lg-auto">Library</p>
+                <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...">
+                </form>
+                <div class="text-end">
+                    <button class="btn btn-warning me-2">Sing up</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-</body>
-</html>
+    <div class="container-fluid">
+        <h2>All Books</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Authur</td>
+                    <td>Gener</td>
+                    <td>PEGI</td>
+                    <td>Avilable</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% if books %}
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.name }}</td>
+                            <td>{{ book.authur }}</td>
+                            <td>{% for Gener in book.category.all %}
+                                {{ Gener.name }}{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+                            <td>{{ book.Pegi }}</td>
+                        <td>{{ book.rented }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+            {% if not books %}
+                <p class="align-content-lg-center align-items-center text-center text-muted h1">There is no book to
+                    show!</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

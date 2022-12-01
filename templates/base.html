@@ -1,10 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="description" content=""/>
+    <meta name="author" content="Dan Hedaiat"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.2.3/css/bootstrap.min.css' %}">
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
-
+{% block body %}
+{% endblock %}
 </body>
+
+<script type="application/javascript" src="{% static 'jquery.3.6.1.js' %}"></script>
+<script type="application/javascript" src="{% static 'bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
+{% block javascript %}
+{% endblock %}
 </html>

@@ -30,7 +30,7 @@ class Books(models.Model):
     name = models.CharField(max_length=50)
     barcode = models.CharField(max_length=50)
     Pegi = models.CharField(choices=pegiChoice, max_length=20)
-    auther = models.CharField(max_length=50)
+    authur = models.CharField(max_length=50)
     category = models.ManyToManyField(Category, related_name="book")
     rented = models.BooleanField(default=False)
     archiveDate = models.DateTimeField(default=datetime.datetime.now())
