@@ -1,0 +1,17 @@
+{% if books %}
+    {% for book in books %}
+        <tr>
+            <td>{{ book.name }}</td>
+            <td>{{ book.authur }}</td>
+            <td>{% for Gener in book.category.all %}
+                {{ Gener.name }}{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+            <td>{{ book.Pegi }}</td>
+            <td>{{ book.rented }}</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+
+{% if not books %}
+    <p class="h3 text-muted">There is no book to
+        show!</p>
+{% endif %}

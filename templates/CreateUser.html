@@ -1,10 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block head %}
+    <style>
+        .createBody {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            border-radius: 30px;
+            background: #fcedda;
+            overflow: hidden;
+            -webkit-box-shadow: 0px 0px 27px 6px #A1978B;
+            box-shadow: 0px 0px 27px 6px #A1978B;
+        }
+
+        .createBody img {
+            display: flex;
+            width: 350px;
+        }
+
+        .createBody form {
+            display: flex;
+            width: 350px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .createBody form .form-group {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .createBody form .form-group label {
+            display: flex;
+            align-items: center;
+            width: 200px;
+            color: #181919;
+        }
+
+        .createBody form .form-group input {
+            display: flex;
+            background: #6776a4;
+            color: #fff;
+        }
+
+        .createBody form .form-group textarea {
+            display: flex;
+            background: #6776a4;
+            color: #fff;
+        }
+
+        .createBody form .form-group .submitBtn {
+            background: #bd5d3b;
+            color: #fff;
+        }
+
+        .createBody form .form-group:last-child {
+            justify-content: center;
+        }
+    </style>
+{% endblock %}
+{% block headers %}
+    <header class="p-3 text-bg-dark">
+        <div class="container ">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
+                <p class="h2 me-lg-auto">Library</p>
+                <div class="text-end">
+                    <a href='{% url "Home" %}' class="btn btn-warning me-2">Home</a>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block body %}
+    <div class="container mt-5 d-flex justify-content-center align-items-center">
+        <div class="createBody">
+            <img class="" src="{% static 'image/create_user_pic.jpg' %}" alt="">
+            <form action="" method="post" class="m-3">
+                {% csrf_token %}
+                <div class="m-3 form-group">
+                    <label for="id_first_name" class="form-label">First name: </label>
+                    {{ form.first_name }}
+                </div>
+                <div class="m-3 form-group">
+                    <label for="id_last_name" class="form-label">Last name: </label>
+                    {{ form.last_name }}
+                </div>
+                <div class="m-3 form-group">
+                    <label for="id_username" class="form-label">Username: </label>
+                    {{ form.username }}
+                </div>
+                <div class="m-3 form-group">
+                    <label for="id_phone" class="form-label">Phone: </label>
+                    {{ form.phone }}
+                </div>
+                <div class="m-3 form-group">
+                    <label for="id_address" class="form-label">Address: </label>
+                    {{ form.address }}
+                </div>
+                <div class="m-3 form-group">
+                    <button type="submit" class="btn submitBtn">Sing up</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+        function phoneNumberCheck(input){
+            setInputFilter(input, function (value){
+                return /^[0-9]*$/.test(value);
+            })
+        }
+
+        function setInputFilter(textbox, inputFilter) {
+            ['input', 'keydown', 'keyup', 'mousedown', 'mouseup', 'select', 'contextmenu', 'drop'
+        ].forEach((event) => {
+            textbox.addEventListener(event, function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty('oldValue')) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = '';
+                }
+            });
+        });
+        }
+    </script>
+{% endblock %}

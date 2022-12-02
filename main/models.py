@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=10, blank=True, null=True)
+    phone = models.CharField(max_length=11, blank=True, null=True)
     address = models.CharField(max_length=500, blank=True, null=True)
     birthday = models.DateTimeField(blank=True, null=True)
     joinDate = models.DateTimeField(default=datetime.datetime.now())

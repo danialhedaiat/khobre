@@ -12,17 +12,17 @@ class LoginForm(forms.Form):
 
 class CreateUserForm(forms.ModelForm):
     first_name = forms.CharField(max_length=50, required=True,
-                                widget=forms.TextInput(attrs={"class": "form-control", "name": "first_name"}))
+                                 widget=forms.TextInput(attrs={"class": "form-control", "name": "first_name"}))
     last_name = forms.CharField(max_length=50, required=True,
-                               widget=forms.TextInput(attrs={"class": "form-control", "name": "last_name"}))
+                                widget=forms.TextInput(attrs={"class": "form-control", "name": "last_name"}))
     username = forms.CharField(max_length=50, required=True,
                                widget=forms.TextInput(attrs={"class": "form-control", "name": "username"}))
-    phone = forms.CharField(max_length=10, required=True,
-                            widget=forms.TextInput(attrs={"class": "form-control", "name": "phone"}))
-    address = forms.CharField(max_length=500,
-                              widget=forms.TextInput(attrs={"class": "form-control", "name": "address"}))
+    phone = forms.CharField(max_length=11, required=True,
+                            widget=forms.TextInput(
+                                attrs={"class": "form-control", "name": "phone", "onkeyup": "phoneNumberCheck(this)"}))
+    address = forms.CharField(max_length=500, required=False,
+                              widget=forms.Textarea(attrs={"class": "form-control", "name": "address", "rows": "3"}))
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'phone', 'address', 'birthday']
-
+        fields = ['first_name', 'last_name', 'phone', 'address', 'birthday', 'username']
